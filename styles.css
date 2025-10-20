@@ -1,0 +1,66 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 { font-size: 2.4rem; }
+header p { margin: 8px 0 16px; font-size: 1.2rem; }
+
+.buttons a {
+  margin: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #238636;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.buttons a:hover { background: #2ea043; }
+
+section { margin: 50px 0; }
+section h2 { margin-bottom: 18px; font-size: 1.8rem; }
+
+.stats img {
+  width: 45%;
+  max-width: 400px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  padding: 10px;
+}
+
+.repo-card {
+  background: #161b22;
+  padding: 18px;
+  border-radius: 12px;
+  text-align: left;
+  transition: 0.2s;
+  border: 1px solid #30363d;
+}
+
+.repo-card:hover {
+  transform: translateY(-5px);
+  border-color: #2ea043;
+}
+
+.repo-card h3 { margin-bottom: 8px; }
+.repo-card a {
+  color: #2ea043;
+  font-weight: bold;
+  text-decoration: none;
+}
+.repo-card a:hover { text-decoration: underline; }
+
+footer { margin-top: 40px; opacity: 0.7; }
