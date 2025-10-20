@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Zaid Khan</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <div class="site">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
+      <div class="nav-right">
+        <button id="theme-toggle-2" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="card">
+        <h1 class="section-title">Highlighted Projects</h1>
+        <p class="muted">Auto-populated from your public GitHub repositories (sorted by most recently updated).</p>
+      </section>
+
+      <section class="card">
+        <div id="projects-grid" class="projects-grid">
+          <div class="muted">Loading projects…</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© <span id="year2"></span> Zaid Khan — Projects</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
