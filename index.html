@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaid Khan - Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Zaid Khan</h1>
+    <p>Machine Learning | AI | Cloud | Full-Stack</p>
+    <div class="buttons">
+      <a target="_blank" href="https://github.com/zaid5678">GitHub</a>
+      <a target="_blank" href="https://www.linkedin.com/in/zaid-khan-084905171/">LinkedIn</a>
+      <a href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>GitHub Stats</h2>
+    <div class="stats">
+      <img src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&theme=radical" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&theme=radical" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Latest Repositories</h2>
+    <div id="repo-container" class="repo-grid"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 Zaid Khan</p>
+  </footer>
+
+<script>
+  const username = "zaid5678";
+
+  async function loadRepos() {
+    const container = document.getElementById("repo-container");
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+    const repos = await res.json();
+
+    repos.slice(0, 6).forEach(repo => {
+      const card = document.createElement("div");
+      card.className = "repo-card";
+      card.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "No description available"}</p>
+        <a target="_blank" href="${repo.html_url}">View on GitHub</a>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  loadRepos();
+</script>
+
+</body>
+</html>
