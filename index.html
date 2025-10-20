@@ -1,62 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zaid Khan - Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zaid Khan — Portfolio</title>
+  <meta name="description" content="Zaid Khan — Software Engineer. Cloud, ML and full-stack developer based in London." />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
+  <div class="site">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
+      <div class="nav-right">
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </div>
+    </nav>
 
-  <header>
-    <h1>Zaid Khan</h1>
-    <p>Machine Learning | AI | Cloud | Full-Stack</p>
-    <div class="buttons">
-      <a target="_blank" href="https://github.com/zaid5678">GitHub</a>
-      <a target="_blank" href="https://www.linkedin.com/in/zaid-khan-084905171/">LinkedIn</a>
-      <a href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
-    </div>
-  </header>
+    <main class="container">
+      <section class="hero card">
+        <div class="hero-left">
+          <img src="assets/avatar-placeholder.png" alt="Zaid Khan avatar" class="avatar" />
+        </div>
+        <div class="hero-right">
+          <h1 class="name">Zaid Khan</h1>
+          <p class="role">
+            <span id="type-text" aria-live="polite"></span><span class="cursor">|</span>
+          </p>
+          <p class="lead muted">
+            Software Engineer & entrepreneur based in London. I build AI systems, cloud solutions and full-stack products that solve real problems — with production experience at AWS and a First-Class MEng from UCL. (CV used to expand this summary). :contentReference[oaicite:1]{index=1}
+          </p>
 
-  <section>
-    <h2>GitHub Stats</h2>
-    <div class="stats">
-      <img src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&theme=radical" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&theme=radical" />
-    </div>
-  </section>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/zaid5678" target="_blank" rel="noopener">View GitHub</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/zaid-khan-084905171/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn ghost" href="mailto:zfkhan321@gmail.com">Email</a>
+            <a class="btn" href="assets/Zaid_Khan_CV.pdf" download="Zaid_Khan_CV.pdf">Download CV</a>
+          </div>
+        </div>
+      </section>
 
-  <section>
-    <h2>Latest Repositories</h2>
-    <div id="repo-container" class="repo-grid"></div>
-  </section>
+      <section class="card stats-row">
+        <h2 class="section-title">GitHub Stats</h2>
+        <div class="stats-cards">
+          <!-- Readme-stats images (public, no token). Theme param is neutral; images load from external service. -->
+          <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&hide_title=true&locale=en" alt="GitHub stats" />
+          <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&hide_title=true&locale=en" alt="Top languages" />
+        </div>
+      </section>
 
-  <footer>
-    <p>© 2025 Zaid Khan</p>
-  </footer>
+      <section class="card">
+        <h2 class="section-title">Latest Repositories</h2>
+        <div id="repo-grid" class="repo-grid" aria-live="polite">
+          <!-- JS will populate repo cards -->
+          <div class="muted">Loading repositories…</div>
+        </div>
+      </section>
 
-<script>
-  const username = "zaid5678";
+      <section class="card">
+        <h2 class="section-title">About</h2>
+        <p class="muted">
+          I graduated First Class from University College London (MEng Mathematical Computation) with a dissertation focused on applying BERT and HuggingFace tools for QA systems. I have experience at AWS (RDS control plane) and machine learning internships at Sky and Zand Bank. I enjoy building systems that are production-ready, maintainable and well-instrumented. :contentReference[oaicite:2]{index=2}
+        </p>
+      </section>
+    </main>
 
-  async function loadRepos() {
-    const container = document.getElementById("repo-container");
-    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
-    const repos = await res.json();
+    <footer class="footer">
+      <div>© <span id="year"></span> Zaid Khan — London • <a href="https://github.com/zaid5678" target="_blank">GitHub</a></div>
+    </footer>
+  </div>
 
-    repos.slice(0, 6).forEach(repo => {
-      const card = document.createElement("div");
-      card.className = "repo-card";
-      card.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "No description available"}</p>
-        <a target="_blank" href="${repo.html_url}">View on GitHub</a>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  loadRepos();
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
