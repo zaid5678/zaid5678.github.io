@@ -4,7 +4,7 @@
   --light-bg:#f7f8fa; --light-card:#ffffff; --light-text:#0b1220; --transition:.22s ease;
 }
 
-/* Dark theme default */
+/* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -13,12 +13,20 @@ body{
 }
 a{color:inherit}
 .site{max-width:980px;margin:0 auto}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+
+/* Navbar: Brand left, tabs center, theme right */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.nav-left{flex:1;text-align:left}
+.nav-center{flex:1;text-align:center}
+.nav-right{flex:1;text-align:right}
 .brand{font-weight:700;text-decoration:none;color:var(--text);font-size:18px}
-.nav-link{margin-left:12px;color:var(--muted);text-decoration:none}
+.nav-link{margin:0 10px;color:var(--muted);text-decoration:none;font-weight:600}
+.nav-link:hover{color:var(--text)}
+
+/* Buttons */
 .icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer}
 
-/* Cards */
+/* Cards & layout */
 .container{display:block;gap:20px}
 .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;margin-bottom:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
 .section-title{margin:0 0 12px 0;font-size:16px}
@@ -33,7 +41,7 @@ a{color:inherit}
 .role{margin:8px 0;font-weight:600}
 .lead{margin-top:10px}
 
-/* Buttons */
+/* Actions */
 .actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
 .btn{padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:var(--text);font-weight:600}
 .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#032022}
@@ -44,7 +52,7 @@ a{color:inherit}
 .stats-cards{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .stats-img{max-width:420px;width:48%;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
 
-/* Repo grid (cards layout) */
+/* Repo grid */
 .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
 .repo-card{background:rgba(8,12,16,0.5);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);text-align:left;transition:transform var(--transition),box-shadow var(--transition)}
 .repo-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(3,10,20,0.55)}
@@ -58,17 +66,18 @@ a{color:inherit}
 /* Footer */
 .footer{text-align:center;margin:18px 0;color:var(--muted)}
 
-/* Typing cursor */
+/* Typing */
 .cursor{display:inline-block;margin-left:6px;opacity:1;animation:blink .9s infinite}
 @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 
 /* Responsive */
 @media (max-width:880px){
+  .nav-center{display:none} /* small screens show only brand + theme; users use nav links on other pages */
   .hero{flex-direction:row;align-items:flex-start}
   .stats-img{width:95%}
 }
 
-/* Light theme toggled by .light on body */
+/* Light theme */
 body.light{
   background:var(--light-bg);color:var(--light-text);
 }
