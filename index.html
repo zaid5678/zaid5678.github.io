@@ -12,6 +12,7 @@
   <div class="site">
     <nav class="nav">
       <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
+
       <div class="nav-center">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
@@ -20,8 +21,26 @@
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
+
       <div class="nav-right">
         <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
+
+        <!-- Hamburger (visible on mobile) -->
+        <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <!-- Mobile dropdown menu (slide-down, glassmorphic) -->
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <a class="mobile-link" href="index.html">Home</a>
+        <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="skills.html">Skills</a>
+        <a class="mobile-link" href="blog.html">Blog</a>
+        <a class="mobile-link" href="about.html">About</a>
+        <a class="mobile-link" href="contact.html">Contact</a>
       </div>
     </nav>
 
