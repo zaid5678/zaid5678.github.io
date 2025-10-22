@@ -14,17 +14,51 @@ body{
 a{color:inherit}
 .site{max-width:980px;margin:0 auto}
 
-/* Navbar: Brand left, tabs center, theme right */
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+/* NAVBAR: Brand left, tabs center, theme + hamburger right */
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
 .nav-left{flex:1;text-align:left}
 .nav-center{flex:1;text-align:center}
-.nav-right{flex:1;text-align:right}
+.nav-right{flex:1;text-align:right;display:flex;justify-content:flex-end;align-items:center;gap:8px}
 .brand{font-weight:700;text-decoration:none;color:var(--text);font-size:18px}
 .nav-link{margin:0 10px;color:var(--muted);text-decoration:none;font-weight:600}
 .nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--accent-2);}
 
 /* Buttons */
 .icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+/* Hamburger */
+.hamburger{display:none;background:transparent;border:none;padding:8px;border-radius:8px;cursor:pointer}
+.hamburger:focus{outline:none}
+.hamburger-line{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:transform .18s ease,opacity .18s ease}
+
+/* Mobile menu (hidden by default) */
+.mobile-menu{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:64px; /* under navbar */
+  border-radius:12px;
+  padding:12px 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:0 12px 40px rgba(2,6,23,0.6);
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity:0;
+  pointer-events:none;
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .22s ease;
+  z-index:1200;
+}
+
+/* mobile links left-aligned (user chose left alignment) */
+.mobile-link{display:block;padding:10px 12px;margin:6px 0;border-radius:8px;color:var(--text);text-decoration:none;font-weight:700;text-align:left}
+.mobile-link:hover{background:rgba(255,255,255,0.02)}
+
+/* when open */
+.mobile-menu.open{transform:scaleY(1);opacity:1;pointer-events:auto}
 
 /* Cards & layout */
 .container{display:block;gap:20px}
@@ -66,14 +100,15 @@ a{color:inherit}
 /* Footer */
 .footer{text-align:center;margin:18px 0;color:var(--muted)}
 
-/* Typing */
+/* Typing cursor */
 .cursor{display:inline-block;margin-left:6px;opacity:1;animation:blink .9s infinite}
 @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 
 /* Responsive */
 @media (max-width:880px){
-  .nav-center{display:none} /* small screens show only brand + theme; users use nav links on other pages */
-  .hero{flex-direction:row;align-items:flex-start}
+  .nav-center{display:none} /* hide center tabs on small screens */
+  .hamburger{display:inline-block}
+  .mobile-menu{left:12px;right:12px;top:58px}
   .stats-img{width:95%}
 }
 
@@ -85,3 +120,4 @@ body.light .card{background:var(--light-card);box-shadow:0 10px 30px rgba(12,20,
 body.light .muted{color:#425466}
 body.light .icon-btn{border:1px solid rgba(8,12,16,0.06)}
 body.light .repo-card{background:#f7f8fa;border:1px solid #e6eef6}
+body.light .mobile-menu{background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.65)); border:1px solid rgba(10,10,10,0.06)}
