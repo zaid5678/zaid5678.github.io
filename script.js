@@ -1,5 +1,6 @@
 // script.js
-// Theme toggle, typing on Home only, repo fetch for Projects page, active nav highlight, year fill.
+// Theme toggle, typing on Home only, repo fetch for Projects page, active nav highlight,
+// hamburger toggle (slide-down glass), click-outside to close, and auto-close on nav click.
 
 const username = "zaid5678";
 
@@ -13,7 +14,7 @@ const initTheme = () => {
   const saved = localStorage.getItem("theme") || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'dark');
   applyTheme(saved);
 };
-const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-2, #theme-toggle-3, #theme-toggle-4, #theme-toggle-5');
+const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-2, #theme-toggle-3, #theme-toggle-4, #theme-toggle-5, #theme-toggle-6');
 toggleBtns.forEach(b => {
   if (!b) return;
   b.addEventListener('click', () => {
@@ -24,7 +25,7 @@ toggleBtns.forEach(b => {
 });
 initTheme();
 
-// ---------- ACTIVE NAV HIGHLIGHT ----------
+// ---------- NAV HIGHLIGHT ----------
 (function highlightNav(){
   try {
     const path = location.pathname.split('/').pop() || 'index.html';
@@ -32,7 +33,6 @@ initTheme();
     links.forEach(a => {
       const href = a.getAttribute('href');
       if (!href) return;
-      // normalize index
       if ((href === 'index.html' && (path === '' || path === 'index.html')) || href === path) {
         a.classList.add('active');
       } else {
@@ -42,7 +42,63 @@ initTheme();
   } catch(e){}
 })();
 
-// ---------- TYPING ANIMATION (Home only, Style 3) ----------
+// ---------- HAMBURGER & MOBILE MENU ----------
+const hamburgerIds = ['hamburger','hamburger-2','hamburger-3','hamburger-4','hamburger-5','hamburger-6'];
+const mobileMenuIds = ['mobile-menu']; // all pages use same id multiple times; script will grab the first visible
+function getMobileMenu() {
+  // mobile-menu elements are repeated on each page; use the one in DOM
+  return document.getElementById('mobile-menu');
+}
+function toggleMobileMenu(open) {
+  const menu = getMobileMenu();
+  const hamb = document.querySelector('.hamburger');
+  if (!menu) return;
+  if (open === undefined) open = !menu.classList.contains('open');
+  if (open) {
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    // set all hamburger aria-expanded attributes to true
+    document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','true'));
+  } else {
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+    document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','false'));
+  }
+}
+
+// attach listeners to all hamburger buttons present
+hamburgerIds.forEach(id=>{
+  const btn = document.getElementById(id);
+  if (!btn) return;
+  btn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+});
+
+// when a mobile link is clicked, close menu
+document.addEventListener('click', (e)=>{
+  const menu = getMobileMenu();
+  if (!menu) return;
+  const isLink = e.target.closest('.mobile-link');
+  if (isLink) {
+    toggleMobileMenu(false);
+    return;
+  }
+  const isHamb = e.target.closest('.hamburger');
+  if (!isHamb && menu.classList.contains('open')) {
+    // click outside menu closes it
+    const insideMenu = e.target.closest('.mobile-menu');
+    if (!insideMenu) toggleMobileMenu(false);
+  }
+});
+
+// close mobile menu on ESC
+document.addEventListener('keydown', (e)=>{
+  if (e.key === 'Escape') toggleMobileMenu(false);
+});
+
+// ---------- TYPING (Home only, Style 3) ----------
 const typingStrings = [
   "I build AI and cloud systems at scale.",
   "I'm a full-stack engineer and entrepreneur.",
@@ -119,14 +175,13 @@ async function loadProjectsPage(){
     grid.innerHTML = '<div class="muted">No repositories found or an error occurred.</div>';
     return;
   }
-  // If projects page, show 12; if projects section on page, show 6
   const limit = (document.location.pathname.includes('projects.html')) ? 12 : 6;
   repos.slice(0, limit).forEach(r => grid.appendChild(createRepoCard(r)));
 }
 
 // ---------- YEAR FILL & INIT ----------
 document.addEventListener('DOMContentLoaded', () => {
-  ['year','year2','year3','year4','year5','year6'].forEach(id => {
+  ['year','year2','year3','year4','year5','year6','year7'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = new Date().getFullYear();
   });
