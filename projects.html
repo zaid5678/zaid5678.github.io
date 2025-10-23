@@ -4,35 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projects — Zaid Khan</title>
-  <meta name="description" content="Projects by Zaid Khan" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <div class="site">
+
+    <!-- NAVBAR -->
     <nav class="nav">
       <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
-      <div class="nav-center">
+
+      <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
         <a class="nav-link" href="skills.html">Skills</a>
-        <a class="nav-link" href="blog.html">Blog</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
+
       <div class="nav-right">
-        <button id="theme-toggle-2" class="icon-btn" aria-label="Toggle theme">🌗</button>
-        <button id="hamburger-2" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <button id="theme-toggle-2" class="icon-btn">🌗</button>
+        <button id="hamburger-2" class="hamburger">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
-      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+
+      <div id="mobile-menu" class="mobile-menu">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
         <a class="mobile-link" href="skills.html">Skills</a>
-        <a class="mobile-link" href="blog.html">Blog</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
       </div>
@@ -42,22 +44,20 @@
       <section class="card">
         <h1 class="section-title">GitHub Stats</h1>
         <div class="stats-cards">
-          <img class="stats-img" id="stats-card-1" src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&hide_title=true&locale=en" alt="GitHub stats" />
-          <img class="stats-img" id="stats-card-2" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&hide_title=true&locale=en" alt="Top languages" />
+          <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&hide_title=true" />
+          <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&hide_title=true" />
         </div>
       </section>
 
       <section class="card">
         <h2 class="section-title">Latest Repositories</h2>
-        <div id="repo-grid" class="repo-grid" aria-live="polite">
+        <div id="repo-grid" class="repo-grid">
           <div class="muted">Loading repositories…</div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>© <span id="year2"></span> Zaid Khan — Projects</div>
-    </footer>
+    <footer class="footer">© <span id="year2"></span> Zaid Khan</footer>
   </div>
 
   <script src="script.js"></script>
