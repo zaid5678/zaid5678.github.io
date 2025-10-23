@@ -4,71 +4,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Zaid Khan — Home</title>
-  <meta name="description" content="Zaid Khan — Software Engineer & entrepreneur. Cloud, ML and full-stack developer based in London." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <div class="site">
+
+    <!-- NAVBAR -->
     <nav class="nav">
       <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
 
-      <div class="nav-center">
+      <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
         <a class="nav-link" href="skills.html">Skills</a>
-        <a class="nav-link" href="blog.html">Blog</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
 
       <div class="nav-right">
-        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
-
-        <!-- Hamburger (visible on mobile) -->
-        <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <button id="theme-toggle" class="icon-btn">🌗</button>
+        <button id="hamburger" class="hamburger">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
 
-      <!-- Mobile dropdown menu (slide-down, glassmorphic) -->
-      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
         <a class="mobile-link" href="skills.html">Skills</a>
-        <a class="mobile-link" href="blog.html">Blog</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
       </div>
     </nav>
 
     <main class="container">
-      <section class="hero card">
+      <section class="card hero">
         <div class="hero-left">
-          <img src="assets/avatar-placeholder.png" alt="Zaid Khan avatar" class="avatar" />
+          <img src="assets/avatar.png" class="avatar" alt="Avatar"/>
         </div>
+
         <div class="hero-right">
           <h1 class="name">Zaid Khan</h1>
-          <p class="role"><span id="type-text" aria-live="polite"></span><span class="cursor">|</span></p>
-          <p class="lead muted">
-            Software Engineer & entrepreneur based in London. I build production-ready AI systems, scalable cloud platforms, and full-stack products that solve real problems.
-          </p>
+          <p class="role"><span id="type-text"></span><span class="cursor">|</span></p>
+          <p class="lead muted">Software Engineer & entrepreneur based in London.</p>
 
           <div class="actions">
-            <a class="btn primary" href="https://github.com/zaid5678" target="_blank" rel="noopener">View GitHub</a>
-            <a class="btn ghost" href="https://www.linkedin.com/in/zaid-khan-084905171/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn primary" href="https://github.com/zaid5678" target="_blank">View GitHub</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/zaid-khan-084905171/" target="_blank">LinkedIn</a>
             <a class="btn ghost" href="mailto:zfkhan321@gmail.com">Email</a>
-            <a class="btn" href="https://raw.githubusercontent.com/zaid5678/zaid5678.github.io/main/assets/Zaid_Khan_CV.pdf" download="Zaid_Khan_CV.pdf">Download CV</a>
+            <a class="btn" href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>© <span id="year"></span> Zaid Khan — London • <a href="https://github.com/zaid5678" target="_blank">GitHub</a></div>
-    </footer>
+    <footer class="footer">© <span id="year"></span> Zaid Khan</footer>
   </div>
 
   <script src="script.js"></script>
