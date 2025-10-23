@@ -1,6 +1,6 @@
 // script.js
 // Theme toggle, typing on Home only, repo fetch for Projects page, active nav highlight,
-// hamburger toggle (slide-down glass), click-outside to close, and auto-close on nav click.
+// hamburger toggle (slide-down glass + fade), click-outside to close, and auto-close on nav click.
 
 const username = "zaid5678";
 
@@ -14,10 +14,9 @@ const initTheme = () => {
   const saved = localStorage.getItem("theme") || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'dark');
   applyTheme(saved);
 };
-const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-2, #theme-toggle-3, #theme-toggle-4, #theme-toggle-5, #theme-toggle-6');
-toggleBtns.forEach(b => {
-  if (!b) return;
-  b.addEventListener('click', () => {
+// attach to all theme buttons (they're named theme-toggle, theme-toggle-2, etc.)
+document.querySelectorAll('button[id^="theme-toggle"]').forEach(b => {
+  b && b.addEventListener('click', () => {
     const now = document.body.classList.contains('light') ? 'light' : 'dark';
     const next = now === 'light' ? 'dark' : 'light';
     applyTheme(next);
@@ -43,51 +42,42 @@ initTheme();
 })();
 
 // ---------- HAMBURGER & MOBILE MENU ----------
-const hamburgerIds = ['hamburger','hamburger-2','hamburger-3','hamburger-4','hamburger-5','hamburger-6'];
-const mobileMenuIds = ['mobile-menu']; // all pages use same id multiple times; script will grab the first visible
-function getMobileMenu() {
-  // mobile-menu elements are repeated on each page; use the one in DOM
-  return document.getElementById('mobile-menu');
-}
+const mobileMenu = document.getElementById('mobile-menu');
+
 function toggleMobileMenu(open) {
-  const menu = getMobileMenu();
-  const hamb = document.querySelector('.hamburger');
-  if (!menu) return;
-  if (open === undefined) open = !menu.classList.contains('open');
+  if (!mobileMenu) return;
+  if (open === undefined) open = !mobileMenu.classList.contains('open');
   if (open) {
-    menu.classList.add('open');
-    menu.setAttribute('aria-hidden','false');
-    // set all hamburger aria-expanded attributes to true
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden','false');
     document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','true'));
   } else {
-    menu.classList.remove('open');
-    menu.setAttribute('aria-hidden','true');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden','true');
     document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','false'));
   }
 }
 
-// attach listeners to all hamburger buttons present
-hamburgerIds.forEach(id=>{
-  const btn = document.getElementById(id);
-  if (!btn) return;
+// attach click to all hamburger buttons (present on each page)
+document.querySelectorAll('.hamburger').forEach(btn=>{
   btn.addEventListener('click', (e)=>{
     e.stopPropagation();
     toggleMobileMenu();
   });
 });
 
-// when a mobile link is clicked, close menu
+// close menu when clicking a mobile link (auto-close on navigation)
 document.addEventListener('click', (e)=>{
-  const menu = getMobileMenu();
+  const menu = mobileMenu;
   if (!menu) return;
   const isLink = e.target.closest('.mobile-link');
   if (isLink) {
+    // small delay to allow navigation to start
     toggleMobileMenu(false);
     return;
   }
   const isHamb = e.target.closest('.hamburger');
   if (!isHamb && menu.classList.contains('open')) {
-    // click outside menu closes it
     const insideMenu = e.target.closest('.mobile-menu');
     if (!insideMenu) toggleMobileMenu(false);
   }
@@ -181,7 +171,7 @@ async function loadProjectsPage(){
 
 // ---------- YEAR FILL & INIT ----------
 document.addEventListener('DOMContentLoaded', () => {
-  ['year','year2','year3','year4','year5','year6','year7'].forEach(id => {
+  ['year','year2','year3','year4','year5'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = new Date().getFullYear();
   });
