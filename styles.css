@@ -1,29 +1,15 @@
 :root{
-  --bg:#0b0f13;
-  --panel:#0f1720;
-  --muted:#9aa6b2;
-  --accent:#6ee7b7;
-  --accent-2:#60a5fa;
-  --card:#0e1418;
-  --glass: rgba(255,255,255,0.03);
-  --radius:12px;
-  --text:#e6eef6;
-  --light-bg:#f7f8fa;
-  --light-card:#ffffff;
-  --light-text:#0b1220;
-  --transition:.22s ease;
+  --bg:#0b0f13; --panel:#0f1720; --muted:#9aa6b2; --accent:#6ee7b7; --accent-2:#60a5fa;
+  --card:#0e1418; --glass: rgba(255,255,255,0.03); --radius:12px; --text:#e6eef6;
+  --light-bg:#f7f8fa; --light-card:#ffffff; --light-text:#0b1220; --transition:.22s ease;
 }
 
 /* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  padding:18px;
+  margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+  background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;padding:18px;
 }
 a{color:inherit}
 .site{max-width:980px;margin:0 auto}
@@ -53,7 +39,7 @@ a{color:inherit}
   right:12px;
   top:64px; /* under navbar */
   border-radius:12px;
-  padding:8px 8px;
+  padding:12px 10px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
@@ -68,7 +54,7 @@ a{color:inherit}
 }
 
 /* mobile links left-aligned */
-.mobile-link{display:block;padding:12px 14px;margin:6px 0;border-radius:8px;color:var(--text);text-decoration:none;font-weight:700;text-align:left}
+.mobile-link{display:block;padding:10px 12px;margin:6px 0;border-radius:8px;color:var(--text);text-decoration:none;font-weight:700;text-align:left}
 .mobile-link:hover{background:rgba(255,255,255,0.02)}
 
 /* when open */
@@ -76,28 +62,4 @@ a{color:inherit}
 
 /* Cards & layout */
 .container{display:block;gap:20px}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;margin-bottom:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
-.section-title{margin:0 0 12px 0;font-size:16px}
-.muted{color:var(--muted);line-height:1.5}
-
-/* Hero */
-.hero{display:flex;gap:18px;align-items:center}
-.hero-left{flex:0 0 110px}
-.avatar{width:96px;height:96px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:block;object-fit:cover}
-.hero-right{flex:1}
-.name{margin:0;font-size:28px}
-.role{margin:8px 0;font-weight:600}
-.lead{margin-top:10px}
-
-/* Actions */
-.actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
-.btn{padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);text-decoration:none;color:var(--text);font-weight:600}
-.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#032022}
-.btn.ghost{background:transparent}
-
-/* Stats */
-.stats-row{display:flex;flex-direction:column;gap:10px}
-.stats-cards{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.stats-img{max-width:420px;width:48%;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
-
-/* Repo grid */
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.0
