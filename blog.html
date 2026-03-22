@@ -10,46 +10,50 @@
 </head>
 <body>
   <div class="site">
-    <nav class="nav">
-      <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
-      <div class="nav-center">
+
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
+
+      <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="webdev.html">Web Dev</a>
         <a class="nav-link" href="skills.html">Skills</a>
-        <a class="nav-link" href="blog.html">Blog</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
+
       <div class="nav-right">
-        <button id="theme-toggle-4" class="icon-btn" aria-label="Toggle theme">🌗</button>
-        <button id="hamburger-4" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <button id="theme-toggle-7" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <button id="hamburger-7" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
+
       <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="webdev.html">Web Dev</a>
         <a class="mobile-link" href="skills.html">Skills</a>
-        <a class="mobile-link" href="blog.html">Blog</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
       </div>
     </nav>
 
     <main class="container">
-      <section class="card">
+      <section class="card fade-up">
         <h1 class="section-title">Blog</h1>
         <p class="muted">Starter static blog — I can add a markdown or JSON loader later so you can write posts directly in your repo.</p>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>© <span id="year5"></span> Zaid Khan — Blog</div>
-    </footer>
-  </div>
+    <footer class="footer">© <span id="year5"></span> Zaid Khan</footer>
 
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

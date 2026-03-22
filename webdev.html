@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web Dev — Zaid Khan</title>
+  <meta name="description" content="Web development work and interests by Zaid Khan." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <div class="site">
+
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
+
+      <div class="nav-center desktop-menu">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="webdev.html">Web Dev</a>
+        <a class="nav-link" href="skills.html">Skills</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+
+      <div class="nav-right">
+        <button id="theme-toggle-6" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <button id="hamburger-6" class="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <a class="mobile-link" href="index.html">Home</a>
+        <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="webdev.html">Web Dev</a>
+        <a class="mobile-link" href="skills.html">Skills</a>
+        <a class="mobile-link" href="about.html">About</a>
+        <a class="mobile-link" href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <main class="container">
+
+      <!-- Intro -->
+      <section class="card fade-up">
+        <h1 class="section-title">Web Development</h1>
+        <p class="webdev-intro">
+          I build clean, fast web experiences — from landing pages and full-stack apps
+          to design systems and interactive UIs. I care about the craft: sharp typography,
+          considered motion, and code that's easy to maintain.
+        </p>
+
+        <!-- Skills & Technologies -->
+        <div class="skills-group fade-up" data-delay="1">
+          <p class="skills-group-title">Frontend</p>
+          <div class="badge-grid">
+            <span class="badge">React</span>
+            <span class="badge">Next.js</span>
+            <span class="badge">TypeScript</span>
+            <span class="badge">Tailwind CSS</span>
+            <span class="badge">Framer Motion</span>
+            <span class="badge">HTML / CSS</span>
+          </div>
+        </div>
+
+        <div class="skills-group fade-up" data-delay="2">
+          <p class="skills-group-title">Backend &amp; APIs</p>
+          <div class="badge-grid">
+            <span class="badge">Node.js</span>
+            <span class="badge">Express</span>
+            <span class="badge">FastAPI</span>
+            <span class="badge">REST</span>
+            <span class="badge">PostgreSQL</span>
+            <span class="badge">Supabase</span>
+          </div>
+        </div>
+
+        <div class="skills-group fade-up" data-delay="3">
+          <p class="skills-group-title">Tooling &amp; Deployment</p>
+          <div class="badge-grid">
+            <span class="badge">Vite</span>
+            <span class="badge">Vercel</span>
+            <span class="badge">Netlify</span>
+            <span class="badge">GitHub Actions</span>
+            <span class="badge">Docker</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Development Projects -->
+      <section class="card fade-up" data-delay="1">
+        <h2 class="section-title">Web Projects</h2>
+        <div class="webdev-grid">
+
+          <article class="webdev-card fade-up" data-delay="1">
+            <h3>Personal Portfolio</h3>
+            <p>
+              This site — built with plain HTML, CSS, and vanilla JS. Focused on
+              performance, clean design, and considered interactions without any
+              framework overhead.
+            </p>
+            <div class="webdev-card-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </article>
+
+          <article class="webdev-card fade-up" data-delay="2">
+            <h3>Fat Fellas</h3>
+            <p>
+              A full-stack web application for tracking gym progress and meals
+              with a social feed. Built with Next.js, TypeScript, and a Supabase
+              backend.
+            </p>
+            <div class="webdev-card-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Supabase</span>
+            </div>
+          </article>
+
+          <article class="webdev-card fade-up" data-delay="3">
+            <h3>AI Dashboard</h3>
+            <p>
+              An internal tooling dashboard for monitoring AI pipeline metrics,
+              latency, and cost per run — built on React with a FastAPI backend
+              and live WebSocket updates.
+            </p>
+            <div class="webdev-card-tags">
+              <span class="tag">React</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">WebSockets</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Currently Learning -->
+      <section class="card fade-up" data-delay="2">
+        <h2 class="section-title">Currently Learning</h2>
+        <div class="learning-list">
+          <div class="learning-item fade-up" data-delay="1">
+            <span class="learning-dot" aria-hidden="true"></span>
+            TypeScript advanced patterns &amp; generics
+          </div>
+          <div class="learning-item fade-up" data-delay="2">
+            <span class="learning-dot" aria-hidden="true"></span>
+            Next.js App Router and React Server Components
+          </div>
+          <div class="learning-item fade-up" data-delay="3">
+            <span class="learning-dot" aria-hidden="true"></span>
+            Web performance — Core Web Vitals and bundle optimisation
+          </div>
+          <div class="learning-item fade-up" data-delay="4">
+            <span class="learning-dot" aria-hidden="true"></span>
+            Animation techniques with CSS and the View Transitions API
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">© <span id="year6"></span> Zaid Khan</footer>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,94 +1,171 @@
 // script.js
-// Theme toggle, typing on Home only, repo fetch for Projects page, active nav highlight,
-// hamburger toggle (slide-down glass + fade), click-outside to close, and auto-close on nav click.
+// Theme, typing, repo fetch, nav highlight, hamburger, scroll animations,
+// hero stagger, nav scroll indicator, custom cursor.
 
 const username = "zaid5678";
 
-// ---------- THEME ----------
+// ─── THEME ────────────────────────────────────────────────────────────────────
 const applyTheme = (t) => {
-  if (t === "light") document.body.classList.add("light");
-  else document.body.classList.remove("light");
+  document.body.classList.toggle("light", t === "light");
   try { localStorage.setItem("theme", t); } catch(e){}
 };
+
 const initTheme = () => {
-  const saved = localStorage.getItem("theme") || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'dark');
-  applyTheme(saved);
+  const saved = (() => {
+    try { return localStorage.getItem("theme"); } catch(e){ return null; }
+  })();
+  applyTheme(saved || (window.matchMedia?.('(prefers-color-scheme:dark)').matches ? 'dark' : 'dark'));
 };
-// attach to all theme buttons (they're named theme-toggle, theme-toggle-2, etc.)
+
 document.querySelectorAll('button[id^="theme-toggle"]').forEach(b => {
-  b && b.addEventListener('click', () => {
-    const now = document.body.classList.contains('light') ? 'light' : 'dark';
-    const next = now === 'light' ? 'dark' : 'light';
-    applyTheme(next);
+  b?.addEventListener('click', () => {
+    applyTheme(document.body.classList.contains('light') ? 'dark' : 'light');
   });
 });
 initTheme();
 
-// ---------- NAV HIGHLIGHT ----------
-(function highlightNav(){
+// ─── NAV ACTIVE HIGHLIGHT ─────────────────────────────────────────────────────
+(function highlightNav() {
   try {
     const path = location.pathname.split('/').pop() || 'index.html';
-    const links = document.querySelectorAll('.nav-center .nav-link');
-    links.forEach(a => {
+    document.querySelectorAll('.nav-center .nav-link').forEach(a => {
       const href = a.getAttribute('href');
       if (!href) return;
-      if ((href === 'index.html' && (path === '' || path === 'index.html')) || href === path) {
-        a.classList.add('active');
-      } else {
-        a.classList.remove('active');
-      }
+      const isHome = (href === 'index.html' && (path === '' || path === 'index.html'));
+      a.classList.toggle('active', isHome || href === path);
     });
   } catch(e){}
 })();
 
-// ---------- HAMBURGER & MOBILE MENU ----------
+// ─── HAMBURGER & MOBILE MENU ──────────────────────────────────────────────────
 const mobileMenu = document.getElementById('mobile-menu');
 
 function toggleMobileMenu(open) {
   if (!mobileMenu) return;
   if (open === undefined) open = !mobileMenu.classList.contains('open');
-  if (open) {
-    mobileMenu.classList.add('open');
-    mobileMenu.setAttribute('aria-hidden','false');
-    document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','true'));
-  } else {
-    mobileMenu.classList.remove('open');
-    mobileMenu.setAttribute('aria-hidden','true');
-    document.querySelectorAll('.hamburger').forEach(h=>h.setAttribute('aria-expanded','false'));
-  }
+  mobileMenu.classList.toggle('open', open);
+  mobileMenu.setAttribute('aria-hidden', String(!open));
+  document.querySelectorAll('.hamburger').forEach(h => {
+    h.setAttribute('aria-expanded', String(open));
+  });
 }
 
-// attach click to all hamburger buttons (present on each page)
-document.querySelectorAll('.hamburger').forEach(btn=>{
-  btn.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    toggleMobileMenu();
-  });
+document.querySelectorAll('.hamburger').forEach(btn => {
+  btn.addEventListener('click', e => { e.stopPropagation(); toggleMobileMenu(); });
 });
 
-// close menu when clicking a mobile link (auto-close on navigation)
-document.addEventListener('click', (e)=>{
-  const menu = mobileMenu;
-  if (!menu) return;
-  const isLink = e.target.closest('.mobile-link');
-  if (isLink) {
-    // small delay to allow navigation to start
-    toggleMobileMenu(false);
-    return;
-  }
-  const isHamb = e.target.closest('.hamburger');
-  if (!isHamb && menu.classList.contains('open')) {
-    const insideMenu = e.target.closest('.mobile-menu');
-    if (!insideMenu) toggleMobileMenu(false);
+document.addEventListener('click', e => {
+  if (!mobileMenu) return;
+  if (e.target.closest('.mobile-link')) { toggleMobileMenu(false); return; }
+  if (!e.target.closest('.hamburger') && mobileMenu.classList.contains('open')) {
+    if (!e.target.closest('.mobile-menu')) toggleMobileMenu(false);
   }
 });
 
-// close mobile menu on ESC
-document.addEventListener('keydown', (e)=>{
+document.addEventListener('keydown', e => {
   if (e.key === 'Escape') toggleMobileMenu(false);
 });
 
-// ---------- TYPING (Home only, Style 3) ----------
+// ─── SCROLL ANIMATIONS (IntersectionObserver) ─────────────────────────────────
+let scrollObserver = null;
+
+function observeScrollElements(root) {
+  const target = root || document;
+  if (!scrollObserver) {
+    scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+  }
+  target.querySelectorAll('.fade-up').forEach(el => scrollObserver.observe(el));
+}
+
+// ─── HERO STAGGER (load-in) ───────────────────────────────────────────────────
+function initHeroStagger() {
+  document.querySelectorAll('.hero-stagger').forEach(el => {
+    const delay = parseInt(el.dataset.delay || 0) * 90;
+    setTimeout(() => el.classList.add('visible'), 80 + delay);
+  });
+}
+
+// ─── NAV SCROLL INDICATOR ─────────────────────────────────────────────────────
+function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 24);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+// ─── CUSTOM CURSOR ────────────────────────────────────────────────────────────
+function initCursor() {
+  if (window.matchMedia('(hover: none)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const dot  = Object.assign(document.createElement('div'), { className: 'cursor-dot' });
+  const ring = Object.assign(document.createElement('div'), { className: 'cursor-ring' });
+  document.body.append(dot, ring);
+
+  let mx = -200, my = -200, rx = -200, ry = -200;
+  let visible = false;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left    = `${mx}px`;
+    dot.style.top     = `${my}px`;
+    if (!visible) {
+      visible = true;
+      dot.style.opacity  = '1';
+      ring.style.opacity = '1';
+    }
+  });
+
+  document.addEventListener('mouseleave', () => {
+    visible = false;
+    dot.style.opacity  = '0';
+    ring.style.opacity = '0';
+  });
+
+  // Ring follows with lag
+  (function animateRing() {
+    rx += (mx - rx) * 0.13;
+    ry += (my - ry) * 0.13;
+    ring.style.left = `${rx}px`;
+    ring.style.top  = `${ry}px`;
+    requestAnimationFrame(animateRing);
+  })();
+
+  const interactive = 'a, button, .repo-card, .webdev-card, .badge, .btn, .avatar';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(interactive)) {
+      ring.style.width       = '44px';
+      ring.style.height      = '44px';
+      ring.style.borderColor = 'rgba(110, 231, 183, 0.55)';
+      dot.style.transform    = 'translate(-50%, -50%) scale(1.5)';
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(interactive)) {
+      ring.style.width       = '28px';
+      ring.style.height      = '28px';
+      ring.style.borderColor = 'rgba(110, 231, 183, 0.35)';
+      dot.style.transform    = 'translate(-50%, -50%) scale(1)';
+    }
+  });
+}
+
+// ─── TYPING (Home only) ───────────────────────────────────────────────────────
 const typingStrings = [
   "I build AI and cloud systems at scale.",
   "I'm a full-stack engineer and entrepreneur.",
@@ -97,6 +174,21 @@ const typingStrings = [
 const TYPING_SPEED = 36;
 const PAUSE = 900;
 
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+async function typeText(el, text) {
+  for (let i = 0; i <= text.length; i++) {
+    el.textContent = text.slice(0, i);
+    await wait(TYPING_SPEED);
+  }
+}
+async function deleteText(el) {
+  const t = el.textContent;
+  for (let i = t.length; i >= 0; i--) {
+    el.textContent = t.slice(0, i);
+    await wait(18);
+  }
+}
 async function typeLoopIfHome() {
   const el = document.getElementById('type-text');
   if (!el) return;
@@ -109,72 +201,71 @@ async function typeLoopIfHome() {
     }
   }
 }
-function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
-async function typeText(el, text){
-  for (let i=0;i<=text.length;i++){
-    el.textContent = text.slice(0,i);
-    await wait(TYPING_SPEED);
-  }
-}
-async function deleteText(el){
-  const t = el.textContent;
-  for (let i=t.length;i>=0;i--){
-    el.textContent = t.slice(0,i);
-    await wait(18);
-  }
-}
-typeLoopIfHome().catch(()=>{/* silent */});
+typeLoopIfHome().catch(() => {});
 
-// ---------- REPO FETCH & POPULATE (Projects page) ----------
-async function fetchRepos(){
+// ─── REPO FETCH & POPULATE (Projects page) ────────────────────────────────────
+async function fetchRepos() {
   try {
     const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
     if (!res.ok) throw new Error("GitHub API error");
     return await res.json();
-  } catch (err) {
+  } catch(err) {
     console.error(err);
     return [];
   }
 }
 
-function escapeHtml(s){
-  return String(s || '').replace(/[&<>"']/g, (m)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, m =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])
+  );
 }
 
-function createRepoCard(repo){
+function createRepoCard(repo, delay) {
   const div = document.createElement('div');
-  div.className = 'repo-card';
+  div.className = 'repo-card fade-up';
+  if (delay) div.dataset.delay = delay;
   div.innerHTML = `
     <h3>${escapeHtml(repo.name)}</h3>
-    <p>${escapeHtml(repo.description || 'No description')}</p>
-    <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
-      <a target="_blank" href="${repo.html_url}">View</a>
-      ${repo.homepage ? `<a target="_blank" href="${repo.homepage}">Live</a>` : ''}
-      <div style="margin-left:auto;color:var(--muted);font-size:13px">★ ${repo.stargazers_count} • ${escapeHtml(repo.language || '—')}</div>
+    <p>${escapeHtml(repo.description || 'No description.')}</p>
+    <div class="repo-card-footer">
+      <a target="_blank" rel="noopener noreferrer" href="${repo.html_url}">View →</a>
+      ${repo.homepage ? `<a target="_blank" rel="noopener noreferrer" href="${repo.homepage}">Live ↗</a>` : ''}
+      <span class="repo-meta">★ ${repo.stargazers_count} · ${escapeHtml(repo.language || '—')}</span>
     </div>
   `;
   return div;
 }
 
-async function loadProjectsPage(){
+async function loadProjectsPage() {
   const grid = document.getElementById('projects-grid') || document.getElementById('repo-grid');
   if (!grid) return;
-  grid.innerHTML = '';
+  grid.innerHTML = '<div class="muted">Loading repositories…</div>';
   const repos = await fetchRepos();
-  if (!repos || repos.length === 0) {
+  if (!repos?.length) {
     grid.innerHTML = '<div class="muted">No repositories found or an error occurred.</div>';
     return;
   }
-  const limit = (document.location.pathname.includes('projects.html')) ? 12 : 6;
-  repos.slice(0, limit).forEach(r => grid.appendChild(createRepoCard(r)));
+  const limit = location.pathname.includes('projects.html') ? 12 : 6;
+  grid.innerHTML = '';
+  repos.slice(0, limit).forEach((r, i) => {
+    grid.appendChild(createRepoCard(r, (i % 6) + 1));
+  });
+  // Observe newly added cards
+  observeScrollElements(grid.parentElement);
 }
 
-// ---------- YEAR FILL & INIT ----------
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  ['year','year2','year3','year4','year5'].forEach(id => {
+  // Fill year spans
+  ['year','year2','year3','year4','year5','year6'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.textContent = new Date().getFullYear();
   });
 
   loadProjectsPage();
+  observeScrollElements();
+  initHeroStagger();
+  initNavScroll();
+  initCursor();
 });

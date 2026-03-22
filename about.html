@@ -4,36 +4,40 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About — Zaid Khan</title>
+  <meta name="description" content="About Zaid Khan — Software Engineer & entrepreneur." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <div class="site">
 
-    <!-- NAVBAR -->
-    <nav class="nav">
-      <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
 
       <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="webdev.html">Web Dev</a>
         <a class="nav-link" href="skills.html">Skills</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
 
       <div class="nav-right">
-        <button id="theme-toggle-4" class="icon-btn">🌗</button>
-        <button id="hamburger-4" class="hamburger">
+        <button id="theme-toggle-4" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <button id="hamburger-4" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
 
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="webdev.html">Web Dev</a>
         <a class="mobile-link" href="skills.html">Skills</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
@@ -41,28 +45,40 @@
     </nav>
 
     <main class="container">
-      <section class="card">
-        <h1 class="section-title" style="text-align:center">About</h1>
+      <section class="card fade-up">
+        <h1 class="section-title">About</h1>
 
-        <p class="muted" style="max-width:720px;margin:0 auto;text-align:left">
-          Hey — I’m Zaid. I’m a software engineer and builder who loves creating products that actually do something useful. I’ve worked across AI, cloud, and full-stack development at places like Amazon and Sky, where I helped ship scalable systems used by real customers. I graduated from UCL with First-Class Honours in Mathematical Computation, where I got my hands dirty with NLP, problem-solving, and building.
-        </p>
-        <p class="muted" style="max-width:720px;margin:0 auto;text-align:left">
-          I’m currently building in stealth — combining AI, product thinking, and fast execution to create tools that remove friction and give people leverage in their day-to-day lives. My philosophy is simple: ship fast, learn fast, iterate fast.
-        </p>
-        <p class="muted" style="max-width:720px;margin:0 auto;text-align:left">
-          Outside of tech, I enjoy training at the gym, playing and watching football, and constantly improving myself in all areas of life. I like challenging myself, learning continuously, and becoming a better builder, engineer, and entrepreneur each day.
-        </p>
+        <div class="about-body">
+          <p>
+            Hey — I'm Zaid. I'm a software engineer and builder who loves creating products
+            that actually do something useful. I've worked across AI, cloud, and full-stack
+            development at places like Amazon and Sky, where I helped ship scalable systems
+            used by real customers. I graduated from UCL with First-Class Honours in
+            Mathematical Computation, where I got my hands dirty with NLP, problem-solving,
+            and building.
+          </p>
+          <p>
+            I'm currently building in stealth — combining AI, product thinking, and fast
+            execution to create tools that remove friction and give people leverage in their
+            day-to-day lives. My philosophy is simple: ship fast, learn fast, iterate fast.
+          </p>
+          <p>
+            Outside of tech, I enjoy training at the gym, playing and watching football,
+            and constantly improving myself in all areas of life. I like challenging myself,
+            learning continuously, and becoming a better builder, engineer, and entrepreneur
+            each day.
+          </p>
+        </div>
 
-        <div style="text-align:center;margin-top:22px">
+        <div style="margin-top: 32px;">
           <a class="btn" href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
         </div>
       </section>
     </main>
 
     <footer class="footer">© <span id="year4"></span> Zaid Khan</footer>
-  </div>
 
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

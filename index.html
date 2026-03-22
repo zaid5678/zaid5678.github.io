@@ -4,37 +4,40 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Zaid Khan — Home</title>
+  <meta name="description" content="Zaid Khan — Software Engineer & entrepreneur based in London." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <div class="site">
 
-    <!-- NAVBAR -->
-    <nav class="nav">
-      <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
 
       <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="webdev.html">Web Dev</a>
         <a class="nav-link" href="skills.html">Skills</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
 
       <div class="nav-right">
-        <button id="theme-toggle" class="icon-btn">🌗</button>
-        <button id="hamburger" class="hamburger">
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="webdev.html">Web Dev</a>
         <a class="mobile-link" href="skills.html">Skills</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
@@ -44,27 +47,36 @@
     <main class="container">
       <section class="card hero">
         <div class="hero-left">
-          <img src="assets/avatar.png" class="avatar" alt="Avatar"/>
+          <img
+            src="assets/avatar.png"
+            class="avatar hero-stagger"
+            data-delay="0"
+            alt="Zaid Khan"
+          />
         </div>
 
         <div class="hero-right">
-          <h1 class="name">Zaid Khan</h1>
-          <p class="role"><span id="type-text"></span><span class="cursor">|</span></p>
-          <p class="lead muted">Software Engineer & entrepreneur based in London.</p>
+          <h1 class="name hero-stagger" data-delay="1">Zaid Khan</h1>
+          <p class="role hero-stagger" data-delay="2">
+            <span id="type-text"></span><span class="cursor" aria-hidden="true"></span>
+          </p>
+          <p class="lead muted hero-stagger" data-delay="3">
+            Software Engineer &amp; entrepreneur based in London.
+          </p>
 
-          <div class="actions">
-            <a class="btn primary" href="https://github.com/zaid5678" target="_blank">View GitHub</a>
-            <a class="btn ghost" href="https://www.linkedin.com/in/zaid-khan-084905171/" target="_blank">LinkedIn</a>
-            <a class="btn ghost" href="mailto:zfkhan321@gmail.com">Email</a>
-            <a class="btn" href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
+          <div class="actions hero-stagger" data-delay="4">
+            <a class="btn primary" href="https://github.com/zaid5678" target="_blank" rel="noopener noreferrer">View GitHub</a>
+            <a class="btn ghost"   href="https://www.linkedin.com/in/zaid-khan-084905171/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn ghost"   href="mailto:zfkhan321@gmail.com">Email</a>
+            <a class="btn"         href="assets/Zaid_Khan_CV.pdf" download>Download CV</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">© <span id="year"></span> Zaid Khan</footer>
-  </div>
 
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

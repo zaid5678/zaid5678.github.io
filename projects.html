@@ -4,36 +4,40 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Projects — Zaid Khan</title>
+  <meta name="description" content="GitHub projects and repositories by Zaid Khan." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <div class="site">
 
-    <!-- NAVBAR -->
-    <nav class="nav">
-      <div class="nav-left"><a class="brand" href="index.html">Zaid Khan</a></div>
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-left">
+        <a class="brand" href="index.html">Zaid Khan</a>
+      </div>
 
       <div class="nav-center desktop-menu">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="webdev.html">Web Dev</a>
         <a class="nav-link" href="skills.html">Skills</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="nav-link" href="contact.html">Contact</a>
       </div>
 
       <div class="nav-right">
-        <button id="theme-toggle-2" class="icon-btn">🌗</button>
-        <button id="hamburger-2" class="hamburger">
+        <button id="theme-toggle-2" class="icon-btn" aria-label="Toggle theme">🌗</button>
+        <button id="hamburger-2" class="hamburger" aria-label="Open menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
       </div>
 
-      <div id="mobile-menu" class="mobile-menu">
+      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
         <a class="mobile-link" href="index.html">Home</a>
         <a class="mobile-link" href="projects.html">Projects</a>
+        <a class="mobile-link" href="webdev.html">Web Dev</a>
         <a class="mobile-link" href="skills.html">Skills</a>
         <a class="mobile-link" href="about.html">About</a>
         <a class="mobile-link" href="contact.html">Contact</a>
@@ -41,15 +45,23 @@
     </nav>
 
     <main class="container">
-      <section class="card">
+      <section class="card fade-up">
         <h1 class="section-title">GitHub Stats</h1>
         <div class="stats-cards">
-          <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&hide_title=true" />
-          <img class="stats-img" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&hide_title=true" />
+          <img
+            class="stats-img"
+            src="https://github-readme-stats.vercel.app/api?username=zaid5678&show_icons=true&hide_title=true&theme=transparent&text_color=dce9f7&icon_color=6ee7b7&border_color=1a2535"
+            alt="Zaid Khan GitHub stats"
+          />
+          <img
+            class="stats-img"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=zaid5678&layout=compact&hide_title=true&theme=transparent&text_color=dce9f7&border_color=1a2535"
+            alt="Zaid Khan top languages"
+          />
         </div>
       </section>
 
-      <section class="card">
+      <section class="card fade-up" data-delay="1">
         <h2 class="section-title">Latest Repositories</h2>
         <div id="repo-grid" class="repo-grid">
           <div class="muted">Loading repositories…</div>
@@ -58,8 +70,8 @@
     </main>
 
     <footer class="footer">© <span id="year2"></span> Zaid Khan</footer>
-  </div>
 
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
