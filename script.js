@@ -122,11 +122,11 @@ function initCursor() {
   const ring = Object.assign(document.createElement('div'), { className: 'cursor-ring' });
   document.body.appendChild(ring);
 
-  let mx = -200, my = -200, rx = -200, ry = -200;
   let visible = false;
 
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
+    ring.style.left = `${e.clientX}px`;
+    ring.style.top  = `${e.clientY}px`;
     if (!visible) {
       visible = true;
       ring.style.opacity = '1';
@@ -137,15 +137,6 @@ function initCursor() {
     visible = false;
     ring.style.opacity = '0';
   });
-
-  // Ring follows with smooth lag
-  (function animateRing() {
-    rx += (mx - rx) * 0.13;
-    ry += (my - ry) * 0.13;
-    ring.style.left = `${rx}px`;
-    ring.style.top  = `${ry}px`;
-    requestAnimationFrame(animateRing);
-  })();
 
   const interactive = 'a, button, .repo-card, .webdev-card, .badge, .btn';
   document.addEventListener('mouseover', e => {
