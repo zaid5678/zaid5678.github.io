@@ -224,13 +224,15 @@ function createRepoCard(repo, delay) {
   const div = document.createElement('div');
   div.className = 'repo-card fade-up';
   if (delay) div.dataset.delay = delay;
+  // Entire card is clickable
+  div.style.cursor = 'pointer';
+  div.addEventListener('click', () => window.open(repo.html_url, '_blank', 'noopener,noreferrer'));
   div.innerHTML = `
     <h3>${escapeHtml(repo.name)}</h3>
     <p>${escapeHtml(repo.description || 'No description.')}</p>
     <div class="repo-card-footer">
-      <a target="_blank" rel="noopener noreferrer" href="${repo.html_url}">View →</a>
-      ${repo.homepage ? `<a target="_blank" rel="noopener noreferrer" href="${repo.homepage}">Live ↗</a>` : ''}
-      <span class="repo-meta">★ ${repo.stargazers_count} · ${escapeHtml(repo.language || '—')}</span>
+      ${repo.homepage ? `<a target="_blank" rel="noopener noreferrer" href="${repo.homepage}" onclick="event.stopPropagation()">Live ↗</a>` : ''}
+      <span class="repo-meta">${escapeHtml(repo.language || '—')}</span>
     </div>
   `;
   return div;
