@@ -113,31 +113,32 @@ function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const dot  = Object.assign(document.createElement('div'), { className: 'cursor-dot' });
+  // Hide the default browser cursor
+  const noPointer = document.createElement('style');
+  noPointer.textContent = '* { cursor: none !important; }';
+  document.head.appendChild(noPointer);
+
+  // Only the ring — no dot
   const ring = Object.assign(document.createElement('div'), { className: 'cursor-ring' });
-  document.body.append(dot, ring);
+  document.body.appendChild(ring);
 
   let mx = -200, my = -200, rx = -200, ry = -200;
   let visible = false;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left    = `${mx}px`;
-    dot.style.top     = `${my}px`;
     if (!visible) {
       visible = true;
-      dot.style.opacity  = '1';
       ring.style.opacity = '1';
     }
   });
 
   document.addEventListener('mouseleave', () => {
     visible = false;
-    dot.style.opacity  = '0';
     ring.style.opacity = '0';
   });
 
-  // Ring follows with lag
+  // Ring follows with smooth lag
   (function animateRing() {
     rx += (mx - rx) * 0.13;
     ry += (my - ry) * 0.13;
@@ -146,21 +147,19 @@ function initCursor() {
     requestAnimationFrame(animateRing);
   })();
 
-  const interactive = 'a, button, .repo-card, .webdev-card, .badge, .btn, .avatar';
+  const interactive = 'a, button, .repo-card, .webdev-card, .badge, .btn';
   document.addEventListener('mouseover', e => {
     if (e.target.closest(interactive)) {
       ring.style.width       = '44px';
       ring.style.height      = '44px';
-      ring.style.borderColor = 'rgba(110, 231, 183, 0.55)';
-      dot.style.transform    = 'translate(-50%, -50%) scale(1.5)';
+      ring.style.borderColor = 'rgba(244, 63, 94, 0.65)';
     }
   });
   document.addEventListener('mouseout', e => {
     if (e.target.closest(interactive)) {
       ring.style.width       = '28px';
       ring.style.height      = '28px';
-      ring.style.borderColor = 'rgba(110, 231, 183, 0.35)';
-      dot.style.transform    = 'translate(-50%, -50%) scale(1)';
+      ring.style.borderColor = 'rgba(244, 63, 94, 0.45)';
     }
   });
 }
