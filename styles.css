@@ -73,6 +73,8 @@ img { display: block; max-width: 100%; }
 
 .site { max-width: 980px; margin: 0 auto; }
 
+html, body { overflow-x: hidden; }
+
 /* ============================================================
    NAVIGATION
    ============================================================ */
@@ -610,8 +612,9 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   gap:         var(--sp-2);
   margin-bottom: var(--sp-2);
+  flex-wrap:   wrap;
 }
-.webdev-card-header h3 { margin: 0; }
+.webdev-card-header h3 { margin: 0; min-width: 0; flex: 1; }
 
 .status {
   display:       inline-block;
@@ -741,10 +744,13 @@ img { display: block; max-width: 100%; }
 @media (max-width: 880px) {
   .nav-center { display: none; }
   .hamburger  { display: flex; }
-  .stats-img  { width: 95%; max-width: none; }
   .hero       { padding: var(--sp-8) var(--sp-6); }
   .card       { padding: var(--sp-6); }
   .section-title { font-size: var(--text-lg); }
+
+  /* Stack stats images vertically */
+  .stats-cards  { flex-direction: column; align-items: center; }
+  .stats-img    { width: 100%; max-width: 480px; }
 }
 
 @media (max-width: 600px) {
@@ -774,11 +780,23 @@ img { display: block; max-width: 100%; }
   .section-title { font-size: var(--text-lg); }
   .webdev-intro  { margin-bottom: var(--sp-6); }
   .skills-group  { margin-bottom: var(--sp-6); }
+
+  /* Webdev card header: status badge drops to its own line on narrow screens */
+  .webdev-card-header { align-items: flex-start; }
+  .status             { margin-top: 2px; }
+
+  /* Repo/webdev cards: ensure touch-friendly tap targets */
+  .repo-card,
+  .webdev-card { min-height: 0; }
+
+  /* Contact items wrap on small screens */
+  .contact-item { flex-wrap: wrap; }
 }
 
 @media (max-width: 380px) {
   .name { font-size: var(--text-xl); }
   body  { padding: var(--sp-2); }
+  .webdev-card-header { gap: var(--sp-1); }
 }
 
 /* ============================================================
