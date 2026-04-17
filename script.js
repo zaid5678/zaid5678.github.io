@@ -194,6 +194,13 @@ async function typeLoopIfHome() {
 typeLoopIfHome().catch(() => {});
 
 // ─── REPO FETCH & POPULATE (Projects page) ────────────────────────────────────
+const WEBSITE_REPOS = new Set([
+  "fruitcandyuk","urbanshinemobilevaleting","mirzavideo","onetimegem",
+  "diggiespopupevents","commercialcanopycleaning","kayancoffee","makeupbynedz",
+  "CMC","eventuradesigns","bigbenproductions","ATRUMEDIA","LondonForLess",
+  "DTRHair","WICC","FatFellas"
+]);
+
 async function fetchRepos() {
   try {
     const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
@@ -238,9 +245,10 @@ async function loadProjectsPage() {
     grid.innerHTML = '<div class="muted">No repositories found or an error occurred.</div>';
     return;
   }
+  const filtered = repos.filter(r => !WEBSITE_REPOS.has(r.name));
   const limit = location.pathname.includes('projects.html') ? 12 : 6;
   grid.innerHTML = '';
-  repos.slice(0, limit).forEach((r, i) => {
+  filtered.slice(0, limit).forEach((r, i) => {
     grid.appendChild(createRepoCard(r, (i % 6) + 1));
   });
   // Observe newly added cards
